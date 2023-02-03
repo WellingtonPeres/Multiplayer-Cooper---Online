@@ -190,6 +190,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClearCounter
       objectReference: {fileID: 0}
+    - target: {fileID: 3190238950682738128, guid: bbe8986a3f6c18741b8eb3696d5c3f1f,
+        type: 3}
+      propertyPath: testing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3190238950682738128, guid: bbe8986a3f6c18741b8eb3696d5c3f1f,
+        type: 3}
+      propertyPath: secondClearCounter
+      value: 
+      objectReference: {fileID: 1613256107}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbe8986a3f6c18741b8eb3696d5c3f1f, type: 3}
 --- !u!1 &290509102
@@ -881,6 +891,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 46, y: 0, z: 0}
+--- !u!114 &1613256107 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3190238950682738128, guid: bbe8986a3f6c18741b8eb3696d5c3f1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 2070229085}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a72e7bab2bb9b045b58b27f2c42fe1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1725596099
 GameObject:
   m_ObjectHideFlags: 3
