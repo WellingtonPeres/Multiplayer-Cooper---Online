@@ -7,11 +7,13 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private GameInput gameInput;
-    [SerializeField] private LayerMask countersLayerMask;
-    [SerializeField] private Transform kitchenObjectHoldPoint;
+    [SerializeField] private LayerMask objectInteractionLayer;
+    [SerializeField] private Transform itemPoint;
     
     private bool isWalking;
     private Vector3 lastInteractDirection;
+
+    private bool isInteracted;
 
     private void Update()
     {
@@ -38,7 +40,14 @@ public class Player : MonoBehaviour
         RaycastHit raycastHit;
         if (Physics.Raycast(transform.position, lastInteractDirection, out raycastHit, interactDisctance))
         {
-            Debug.Log(raycastHit.collider.name);
+            //Debug.Log(raycastHit.collider.name);
+            isInteracted = true;
+
+            if (isInteracted && Input.GetKeyDown(KeyCode.E))// Colocar o controle do gamepad também
+            {
+                raycastHit.collider.GetComponentInChildren<Item>().gameObject.transform.position = itemPoint.parent.position;
+                //Debug.Log("Peguei o item: " + raycastHit.collider.GetComponentInChildren<Item>().name);
+            }
         }
     }
 
@@ -56,30 +65,26 @@ public class Player : MonoBehaviour
         if (!canMove)
         {
             // Cannot move towards moveDirection
-            // Attempt only X movement
-            Vector3 moveDirectionX = new Vector3(moveDirection.x, 0, 0).normalized;
+            Vector3 moveDirectionX = new Vector3(moveDirection.x, 0, 0).normalized;// Attempt only X movement
             canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirectionX, moveDistance);
 
             if (canMove)
             {
-                // Can move only on the X
-                moveDirection = moveDirectionX;
+                moveDirection = moveDirectionX;// Can move only on the X
             }
             else
             {
                 // Cannot move only on the X
-                // Attempt only Z movement
-                Vector3 moveDirectionZ = new Vector3(0, 0, moveDirection.z).normalized;
+                Vector3 moveDirectionZ = new Vector3(0, 0, moveDirection.z).normalized;// Attempt only Z movement
                 canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirectionZ, moveDistance);
 
                 if (canMove)
                 {
-                    //Can move only on the Z
-                    moveDirection = moveDirectionZ;
+                    moveDirection = moveDirectionZ;//Can move only on the Z
                 }
                 else
                 {
-                    // CAnnot move in any direction
+                    // Cannot move in any direction
                 }
             }
         }
